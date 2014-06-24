@@ -1,6 +1,6 @@
 app.controller("TicketDetailController", ["$stateParams", "workflowApi", "workflowConstants", function($stateParams, workflowApi, workflowConstants) {
     this.ticket = workflowApi.ticket.get({ ticketId: $stateParams.ticketId });
-    this.user = workflowApi.user.get();
+//    this.user = workflowApi.user.get();
 
     this.newStatus = this.ticket.status;
     this.newPriority = this.ticket.priority;

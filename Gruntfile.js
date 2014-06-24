@@ -58,6 +58,7 @@ module.exports = function (grunt) {
 		// *->    put other dependencies here   <-*
 		'vendor/jquery/dist/jquery.js',
 		'vendor/angular/angular.js',
+		'vendor/spinnaker/lib/spinnaker.js',
 		'vendor/angular-resource/angular-resource.js',
 		'vendor/angular-ui-router/release/angular-ui-router.js',
 		'vendor/angular-sails/angular-sails.js',

@@ -1,5 +1,5 @@
-app.controller("TicketListController", function (workflowApi, $sails) {
-    this.items = workflowApi.tickets.get({});
+app.controller("TicketListController", function (workflowApi) {
+    this.items = workflowApi.ticket.query({});
 
 	this.selectedItems = function () {
 		return _.filter(this.items, function (item) {

@@ -1,4 +1,4 @@
-app.factory("workflowApi", function($rootScope, $sails) {
+app.factory("workflowApi", function(spinnaker) {
 
     /*
      +      o     +              o
@@ -65,50 +65,46 @@ app.factory("workflowApi", function($rootScope, $sails) {
 //    }
 //  };
 
-
-	var data = $rootScope.$new();
-
-	data.user = {};
-	data.tickets = [];
-	data.items = [];
-	data.inventory = [];
-
-
-
     return {
-        user: {
-            get: function() {
-                return data.user;
-            }
-        },
-        ticket: {
-            get: function(ticket) {
-                return _.find(data.tickets, function(item) {
-                    return item.id == ticket.ticketId
-                });
-            }
-        },
-        tickets: {
-            get: function() {
-                return data.tickets;
-            }
-        },
-        assignments: {
-            get: function(query) {
-                return _.filter(data.tickets, function(item) {
-                    return item.associate.id == query.associateId
-                });
-            }
-        },
-        items: {
-            get: function() {
-                return data.items;
-            }
-        },
-        inventory: {
-            get: function() {
-                return data.inventory;
-            }
-        }
+//        user: {
+//            get: function() {
+//                return data.user;
+//            }
+//        },
+		user: spinnaker('user'),
+		ticket: spinnaker('ticket'),
+
+//        ticket: {
+//            get: function(ticket) {
+//                return _.find(data.tickets, function(item) {
+//                    return item.id == ticket.ticketId
+//                });
+//            }
+//        },
+//        tickets: {
+//            get: function() {
+//                return data.tickets;
+//            }
+//        },
+		assignment: spinnaker('assignment'),
+//        assignments: {
+//            get: function(query) {
+//                return _.filter(data.tickets, function(item) {
+//                    return item.associate.id == query.associateId
+//                });
+//            }
+//        },
+		item: spinnaker('item'),
+//        items: {
+//            get: function() {
+//                return data.items;
+//            }
+//        },
+		inventory: spinnaker('inventory')
+//        inventory: {
+//            get: function() {
+//                return data.inventory;
+//            }
+//        }
     }
 });

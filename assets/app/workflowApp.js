@@ -1,4 +1,4 @@
-window.app = angular.module("workflowApp", ["ngResource", "ui.router", "ui.bootstrap", "ngSails"])
+window.app = angular.module("workflowApp", ["ngResource", "ui.router", "ui.bootstrap", "spinnaker"])
     .config(function($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise("/tickets");

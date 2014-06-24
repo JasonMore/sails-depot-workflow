@@ -1,6 +1,6 @@
 app.controller("SidebarController", ["workflowApi", function(workflowApi) {
-    this.tickets = workflowApi.tickets.get();
-    this.user = workflowApi.user.get();
+    this.tickets = workflowApi.ticket.query();
+//    this.user = workflowApi.user.get();
 }]);
 
 app.directive("sidebarMenu", function($location) {
