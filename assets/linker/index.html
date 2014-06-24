@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="workflowApp">
+    <head>
+        <title>Workflow</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--<link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.css"/>-->
+        <!--<link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css"/>-->
+        <!--<link rel="stylesheet" href="vendor/bootswatch/spacelab/bootstrap.css"/>-->
+        <link rel="stylesheet" href="css/style.css"/>
+
+        <script src="vendor/jquery/dist/jquery.js"></script>
+        <script src="vendor/angular/angular.js"></script>
+        <script src="vendor/angular-resource/angular-resource.js"></script>
+        <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="vendor/lodash/dist/lodash.js"></script>
+        <script src="vendor/moment/moment.js"></script>
+        <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="vendor/angular-ui-bootstrap-bower/ui-bootstrap.js"></script>
+        <script src="vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
+
+        <script src="app/workflowApp.js"></script>
+        <script src="app/workflowApp-filters.js"></script>
+        <script src="app/shared/workflowConstants.js"></script>
+        <script src="app/shared/workflowApi.js"></script>
+        <script src="app/nav/HeaderController.js"></script>
+        <script src="app/nav/SidebarController.js"></script>
+        <script src="app/ticket/TicketListController.js"></script>
+        <script src="app/ticket/TicketCreateController.js"></script>
+        <script src="app/ticket/TicketDetailController.js"></script>
+        <script src="app/assignments/AssignmentListController.js"></script>
+        <script src="app/inventory/InventoryController.js"></script>
+    </head>
+    <body>
+
+        <ng-include src="'app/nav/header.html'"></ng-include>
+
+        <div class="container-fluid">
+
+            <ng-include src="'app/nav/sidebar.html'" class="col-md-2">
+            </ng-include>
+
+            <div class="col-md-10" ui-view>
+            </div>
+
+        </div>
+
+    </body>
+</html>

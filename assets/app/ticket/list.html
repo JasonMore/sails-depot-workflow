@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>All Tickets</h2>
+    </div>
+    <div class="col-md-6 text-right">
+
+        <div class="btn-group" ng-show="scope.selectedItems().length">
+            <button type="button" class="btn btn-default">
+                <i class="fa fa-trash-o"></i>
+            </button>
+            <button type="button" class="btn btn-default">
+                <i class="fa fa-edit"></i>
+            </button>
+        </div>
+
+        <div class="btn-group">
+            <a class="btn btn-success" href="#/tickets/create">
+                Create ticket
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Id</th>
+                <th>Status</th>
+                <th>Assigned</th>
+                <th>Last updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-class="{info: item.selected}" ng-repeat="item in scope.items">
+                <td>
+                    <input type="checkbox" ng-model="item.selected" />
+                </td>
+                <td>
+                    <a href="#/tickets/{{item.id}}">{{item.id}}</a>
+                </td>
+                <td>{{item.status | ticketStatus}}</td>
+                <td>{{item.associate.friendlyName}}</td>
+                <td>{{item.updated | datetime}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

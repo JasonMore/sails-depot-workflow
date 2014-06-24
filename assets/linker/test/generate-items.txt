@@ -1,0 +1,16 @@
+[
+    '{{repeat(200)}}',
+    {
+        id: '{{integer(0, 9000000)}}',
+        type: '{{random("Laptop", "Desktop", "Tablet", "Phone")}}',
+        description: '{{lorem(3, "words")}}',
+        materials: [
+            '{{repeat(4, 6)}}',
+            {
+                serial: '{{guid()}}',
+                type: '{{random("GPU", "CPU", "HDD", "Motherboard")}}',
+                description: '{{lorem(2, "words")}}'
+            }
+        ]
+    }
+]

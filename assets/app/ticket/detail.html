@@ -1,0 +1,164 @@
+<div class="row col-md-12">
+    <h2>
+        {{detail.ticket.description}} for {{detail.ticket.customer | friendlyName}}<br />
+        <small>{{detail.ticket.updated | datetime}}</small>
+    </h2>
+</div>
+<div class="row col-md-12">
+    <div class="progress">
+        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+             ng-style="{ width: detail.progressPercentage() }">
+            {{detail.ticket.status | ticketStatus}}
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <dl class="col-md-6 dl-horizontal">
+        <dt>Ticket #</dt>
+        <dd>{{detail.ticket.id}}</dd>
+        <dt>Received</dt>
+        <dd>{{detail.ticket.received | datetime}}</dd>
+        <dt>Last updated</dt>
+        <dd>{{detail.ticket.updated | datetime}}</dd>
+        <dt>Customer</dt>
+        <dd>
+            <address>
+                {{detail.ticket.customer | friendlyName}}<br />
+                {{detail.ticket.customer.address.street1}}<br />
+                {{detail.ticket.customer.address.city}},
+                {{detail.ticket.customer.address.state}}
+                {{detail.ticket.customer.address.zip}}<br />
+                <abbr title="Phone">P:</abbr> {{detail.ticket.customer.phone}}<br />
+                <a href="mailto:#">{{detail.ticket.customer.email}}</a>
+            </address>
+        </dd>
+    </dl>
+
+    <dl class="col-md-6 dl-horizontal">
+        <dt>Status</dt>
+        <dd>{{detail.ticket.status | ticketStatus}}</dd>
+        <dt>Priority</dt>
+        <dd>{{detail.ticket.priority}}</dd>
+        <dt>Assigned to</dt>
+        <dd>
+            <a href="#/associates/{{detail.ticket.associate.id}}">
+                {{detail.ticket.associate.friendlyName}}
+            </a>
+        </dd>
+    </dl>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="detail-history">
+            <h3>History</h3>
+            <ol class="list-unstyled">
+                <li ng-repeat="historyItem in detail.ticket.history | orderBy:posted">
+                    <blockquote>
+                        <p>{{historyItem.comment}}</p>
+
+                        <p class="text-info" ng-if="historyItem.previousStatus != historyItem.status">
+                            <strong>
+                                Changed status from {{historyItem.previousStatus | ticketStatus}}
+                                to {{historyItem.status | ticketStatus}}
+                            </strong>
+                        </p>
+
+                        <p class="text-info" ng-if="historyItem.previousPriority != historyItem.priority">
+                            <strong>
+                                Changed priority from {{historyItem.previousPriority | ticketPriority}}
+                                to {{historyItem.priority | ticketPriority}}
+                            </strong>
+                        </p>
+
+                        <p class="text-info" ng-if="historyItem.reassignment">
+                            <strong>
+                                Assigned to {{historyItem.reassignment.friendlyName}}
+                            </strong>
+                        </p>
+                        <footer>
+                            <cite>{{historyItem.author.friendlyName}}</cite>
+                            , {{historyItem.posted | datetime}}
+                        </footer>
+                    </blockquote>
+                </li>
+            </ol>
+            <p ng-show="detail.ticket.history.length == 0">
+                No comments have been made
+            </p>
+        </div>
+
+        <div class="detail-material">
+            <h3>Bill of materials</h3>
+            <dl class="dl-horizontal">
+                <dt ng-repeat-start="material in detail.ticket.materials">{{material.type}}</dt>
+                <dd ng-repeat-end>
+                    {{material.description}}
+                    <a class="btn btn-info btn-xs" ng-show="material.upgrade.length" title="Upgrade available">
+                        <i class="fa fa-cube"></i>
+                    </a>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="col-md-6 panel panel-default">
+        <form class="panel-body" ng-submit="detail.addComment()">
+
+            <div class="form-group">
+                <label>Comment</label>
+                <textarea class="form-control"
+                          rows="5"
+                          placeholder="Description of status change, reason for reassignment, or general comment"
+                          ng-required="true"
+                          ng-model="detail.newCommentText"></textarea>
+            </div>
+
+            <div class="form-group text-right">
+                <button type="submit" class="btn btn-success">Update</button>
+            </div>
+
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">
+                        <input type="checkbox" class="pull-left" ng-model="detail.setStatus" /> set status to
+                    </label>
+                    <div class="col-md-8">
+                        <select class="form-control" ng-model="detail.newStatus" ng-change="detail.setStatus = true">
+                            <option value="{{status.value}}" ng-selected="status.value == detail.newStatus" ng-repeat="status in detail.statusValues">
+                                {{status.value == detail.ticket.status ? status.label + ' (Current)' : status.label}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">
+                        <input type="checkbox" class="pull-left" ng-model="detail.setPriority" /> set priority to
+                    </label>
+                    <div class="col-md-8">
+                        <select class="form-control" ng-model="detail.newPriority" ng-change="detail.setPriority = true">
+                            <option value="{{priority.value}}" ng-selected="priority.value == detail.newPriority" ng-repeat="priority in detail.priorityValues">
+                                {{priority.value == detail.ticket.priority ? priority.label + ' (Current)' : priority.label}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">
+                        <input type="checkbox" class="pull-left" ng-model="detail.setAssociate" /> assign to
+                    </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="inputPassword3" placeholder="Associate name" ng-model="detail.newAssociate" />
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

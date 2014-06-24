@@ -1,0 +1,59 @@
+{
+    user: function() { return [{ id: 9383884, friendlyName: "Barrett Erickson" }, { id: 884774, friendlyName: "Thomas Fieldman" }, { id: 764664, friendlyName: "Aimee Quinn" }][Math.floor(Math.random()*3)]; },
+    tickets: [
+        '{{repeat(52, 66)}}',
+        {
+            id: '{{integer(0, 9000000)}}',
+            type: '{{random("Laptop", "Desktop", "Tablet", "Phone")}}',
+            description: '{{lorem(3, "words")}}',
+            received: '{{date(new Date(2014, 0, 1), new Date())}}',
+            updated: '{{date(new Date(2014, 0, 1), new Date())}}',
+            status: '{{integer(0, 3)}}',
+            priority: '{{integer(0, 3)}}',
+            customer: {
+                id: '{{integer(1000, 50000)}}',
+                nameFirst: '{{firstName()}}',
+                nameLast: '{{surname()}}',
+                address: {
+                    street1: '{{integer(100, 999)}} {{street()}}',
+                    city: '{{city()}}',
+                    state: '{{state()}}',
+                    zip: '{{integer(100, 10000)}}'
+                },
+                phone: '{{phone()}}',
+                email: '{{email()}}'
+            },
+            associate: function() { return [{ id: 9383884, friendlyName: "Barrett Erickson" }, { id: 884774, friendlyName: "Thomas Fieldman" }, { id: 764664, friendlyName: "Aimee Quinn" }][Math.floor(Math.random()*3)]; },
+            history: [
+                '{{repeat(0, 5)}}',
+                {
+                    posted: '{{date(new Date(2014, 0, 1), new Date())}}',
+                    author: {
+                        id: '{{integer(1000, 50000)}}',
+                        friendlyName: '{{firstName()}} {{surname()}}'
+                    },
+                    status: '{{integer(0, 3)}}',
+                    previousStatus: '{{integer(0, 3)}}',
+                    priority: '{{integer(0, 3)}}',
+                    previousPriority: '{{integer(0, 3)}}',
+                    reassignment: function() { return [{ id: 9383884, friendlyName: "Barrett Erickson" }, { id: 884774, friendlyName: "Thomas Fieldman" }, { id: 764664, friendlyName: "Aimee Quinn" }][Math.floor(Math.random()*3)]; },
+                    comment: '{{lorem(3)}}'                }
+            ],
+            materials: [
+                '{{repeat(4, 6)}}',
+                {
+                    serial: '{{guid()}}',
+                    type: '{{random("GPU", "CPU", "HDD", "Motherboard")}}',
+                    description: '{{lorem(2, "words")}}',
+                    upgrade: [
+                        '{{repeat(0, 2)}}',
+                        {
+                            serial: '{{guid()}}',
+                            description: '{{lorem(3, "words")}}'
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

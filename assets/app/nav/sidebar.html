@@ -1,0 +1,26 @@
+<div ng-controller="SidebarController as sidebar">
+    <ul class="nav nav-stacked nav-pills" sidebar-menu>
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li ng-class="{ active: section == 'tickets' }">
+            <a href="#/tickets">
+                <span class="badge pull-right">{{sidebar.tickets.length}}</span>
+                Tickets
+            </a>
+        </li>
+        <li ng-class="{active: section == 'assignments'}">
+            <a href="#/assignments/{{sidebar.user.id}}">
+                <span class="badge text-danger pull-right">{{sidebar.user.assignmentCount}}</span>
+                Assignments
+            </a>
+        </li>
+        <li class="nav-divider">
+        </li>
+        <li ng-class="{active: section == 'inventory'}">
+            <a href="#/inventory">
+                Inventory
+            </a>
+        </li>
+    </ul>
+</div>

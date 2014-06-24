@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>Assignments</h2>
+    </div>
+    <div class="col-md-6 text-right">
+
+        <div class="btn-group" ng-show="list.selectedItems().length">
+            <button type="button" class="btn btn-default">
+                <i class="fa fa-trash-o"></i>
+            </button>
+            <button type="button" class="btn btn-default">
+                <i class="fa fa-edit"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Id</th>
+                <th>Status</th>
+                <th>Last updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-class="{info: ticket.selected}" ng-repeat="ticket in list.tickets">
+                <td>
+                    <input type="checkbox" ng-model="ticket.selected" />
+                </td>
+                <td>
+                    <a href="#/tickets/{{ticket.id}}">{{ticket.id}}</a>
+                </td>
+                <td>{{ticket.status | ticketStatus}}</td>
+                <td>{{ticket.updated | datetime}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,148 @@
+<div class="row col-md-12">
+    <h2>Create Ticket</h2>
+</div>
+<form class="form-horizontal">
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <h4>Customer</h4>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">First name</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Last name</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Street</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">City, State, Postal</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <h4>Contact</h4>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Phone</label>
+                <div class="col-md-9">
+                    <input type="tel" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Email</label>
+                <div class="col-md-9">
+                    <input type="email" class="form-control" />
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <hr />
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <h4>Ticket Item</h4>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Lookup</label>
+                <div class="col-md-9">
+                    <input type="text"
+                           class="form-control"
+                           ng-model="scope.selectedItem"
+                           typeahead="item.description for item in scope.knownItems | limitTo:5"
+                           typeahead-editable="false"
+                           typeahead-on-select="scope.selectedItem = $item"
+                           typehead-wait-ms="100" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Type</label>
+                <div class="col-md-9">
+                    <span class="form-control">{{scope.selectedItem.type}}</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Manufacturer</label>
+                <div class="col-md-9">
+                    <span class="form-control">{{scope.selectedItem.manufacturer}}</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Model</label>
+                <div class="col-md-9">
+                    <span class="form-control">{{scope.selectedItem.model}}</span>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-6">
+            <h4>Bill of materials</h4>
+
+            <dl class="dl-horizontal">
+                <dt ng-repeat-start="material in scope.selectedItem.materials">{{material.type}}</dt>
+                <dd ng-repeat-end>
+                    {{material.description}}
+                    <a class="btn btn-info btn-xs" ng-show="material.upgrade.length" title="Upgrade available">
+                        <i class="fa fa-cube"></i>
+                    </a>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Problem</h4>
+            <textarea class="form-control" rows="5" placeholder="Short description of problem" required="required"></textarea>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-success">Submit ticket</button>
+        </div>
+    </div>
+
+
+</form>

@@ -1,0 +1,15 @@
+[
+    '{{repeat(20)}}',
+    {
+        id: '{{integer(0, 9000000)}}',
+        name: '{{surname()}}',
+        materials: [
+            '{{repeat(50, 150)}}',
+            {
+                serial: '{{guid()}}',
+                type: '{{random("GPU", "CPU", "HDD", "Motherboard")}}',
+                description: '{{lorem(2, "words")}}'
+            }
+        ]
+    }
+]

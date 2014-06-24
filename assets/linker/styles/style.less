@@ -1,0 +1,102 @@
+@import 'bootstrap';
+@import 'bootswatch';
+
+@bodyBackground: #FAF7EC;
+@navbarBrandColor: #989CAE;
+
+
+
+/*
+    bootstrap overrides
+    geeksquad color: #ff6500
+    darker color for hovers: #dd4814
+*/
+
+p a, dd a, table a {
+  text-decoration: underline;
+}
+a[data-toggle], [ng-click] {
+  cursor: pointer;
+}
+.navbar {
+  border-radius: 0;
+}
+.navbar-brand {
+  font-weight: bold;
+}
+.navbar-brand img {
+  height: 25px;
+}
+
+/* augments */
+
+.select-inline {
+  display: inline-block;
+  width: auto;
+}
+span.form-control {
+  border-style: dotted;
+}
+
+/* custom */
+
+[ui-view] {
+  border-left: solid #ddd 1px;
+}
+
+.detail-history blockquote {
+  font-size: 15px;
+}
+
+.detail-material .btn {
+  float: right;
+  margin-right: 5px;
+}
+.detail-material dl dd {
+  padding-bottom: 6px;
+}
+
+/* autocomplete.js styles */
+
+.autocomplete{
+  width: 100%;
+  position: relative;
+}
+
+.autocomplete input{
+  font-size: 1.2em;
+  width: 100%;
+  padding:0.4em;
+}
+
+.autocomplete ul{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-left: 1px solid #888;
+  border-right: 1px solid #888;
+  border-bottom: 1px solid #888;
+  z-index: 1;
+}
+
+.autocomplete li{
+  text-align: left;
+  list-style:none;
+  width: 100%;
+  padding:0.4em;
+  background-color: #fff;
+}
+
+.autocomplete li.active{
+  width: 100%;
+  background-color: #4bf;
+}
+
+.autocomplete .highlight {
+  background-color: #E2E2E2;
+}
+
+.autocomplete li.active .highlight {
+  background: #666;
+  color: #fff;
+}
